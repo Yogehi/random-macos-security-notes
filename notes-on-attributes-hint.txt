@@ -1,0 +1,27 @@
+Experimenting with writing data to dscl attributes:
+
+Can 'delete' "hint" but cannot 'create' it
+This can be recreated by simply updating the user's password through System Preferences -> Users & Groups with the hint as desired.
+
+Hint displays in a small dialogue box that pops up after 3 failed attempts (or by clicking the ? next to the input field before entering anything)
+HTML: <html><h1>Test</h1></html> - Doesn't work
+Special characters (no \): ~!@#$%^&*()_+`-=<>?{}|:",./;'[] - Doesn't work
+Lots of characters: AAAA x (8*8*8) (with a B at the end) - Rejected without a warning message if done through user interface; allowed through dscl
+
+Same as above but through dscl: "A" + the above 'append'ed results in just an A displaying to the user, but the data itself remains in dscl - In fact anything I 'append' to this is hidden from the display but available in dscl (initial hint set through user interface) 
+
+I accidentally entered the following:
+dscl . append /Users/admin hint C "; some bash command"
+and now the hint displays as
+A
+B
+C
+C
+; some bash command
+Note it is now being displayed vertically ('xxd' confirms newline characters 0x0a have been appended to each entry). No change to output displayed to user - still only says "A" (the Bs and Cs were also 'appended' as above). The bash commanded does NOT execute.
+
+This seems to be caused by appending content wrapped in quotes with a space, i.e. " command" or "; command", etc. I suspect this is to allow easy splitting of this value (spaces before, newlines after), but I don't know WHY this is necessary.
+
+For shits and giggles, you can do:
+`/usr/bin/dscl /Local/Default read /Users/admin hint | sh -`
+to execute any commands you might append to the hint. Again, hidden from the user at login prompt.

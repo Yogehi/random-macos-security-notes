@@ -1,0 +1,86 @@
+These attributes are readable from the admin user as root:
+
+dsAttrTypeNative:_writers_AvatarRepresentation
+dsAttrTypeNative:_writers_hint
+dsAttrTypeNative:_writers_jpegphoto
+dsAttrTypeNative:_writers_passwd
+dsAttrTypeNative:_writers_picture
+dsAttrTypeNative:_writers_realname
+dsAttrTypeNative:_writers_unlockOptions
+dsAttrTypeNative:_writers_UserCertificate
+dsAttrTypeNative:accountPolicyData
+dsAttrTypeNative:AvatarRepresentation 
+dsAttrTypeNative:HeimdalSRPKey
+dsAttrTypeNative:KerberosKeys
+dsAttrTypeNative:ShadowHashData
+dsAttrTypeNative:unlockOptions
+AppleMetaNodeLocation
+AuthenticationAuthority
+AuthenticationHint (dsAttrTypeNative:hint, hint)
+GeneratedUID
+JPEGPhoto (dsAttrTypeNative:jpegphoto, jpegphoto)
+NFSHomeDirectory
+Password (dsAttrTypeNative:passwd, passwd)
+Picture (dsAttrTypeNative:picture, picture)
+PrimaryGroupID
+RealName
+RecordName
+RecordType
+UniqueID
+UserShell
+
+(Note: Some attributes can be referred to in multiple ways and are listed in parentheses after the name separated by commas. Unless otherwise specified, the keys are interchangeable. It is presumed, but not yet confirmed, that each attribute has both a "dsAttrTypeNative" name and a friendly name)
+
+Of the above, the following keys are NOT readable by the admin user (himself):
+
+dsAttrTypeNative:HeimdalSRPKey
+dsAttrTypeNative:KerberosKeys
+dsAttrTypeNative:ShadowHashData
+AppleMetaNodeLocation
+RecordType
+
+Of the above, the following keys ARE readable by the admin user (himself):
+
+dsAttrTypeNative:_writers_AvatarRepresentation
+dsAttrTypeNative:_writers_hint
+dsAttrTypeNative:_writers_jpegphoto
+dsAttrTypeNative:_writers_passwd
+dsAttrTypeNative:_writers_picture
+dsAttrTypeNative:_writers_realname
+dsAttrTypeNative:_writers_unlockOptions
+dsAttrTypeNative:_writers_UserCertificate
+dsAttrTypeNative:accountPolicyData
+dsAttrTypeNative:AvatarRepresentation 
+dsAttrTypeNative:unlockOptions
+AuthenticationAuthority
+AuthenticationHint
+GeneratedUID
+JPEGPhoto
+NFSHomeDirectory
+Password
+Picture
+PrimaryGroupID
+RealName
+RecordName
+UniqueID
+UserShell
+
+For those keys that are readable, the following are WRITEABLE by the admin user (himself):
+
+dsAttrTypeNative:AvatarRepresentation
+dsAttrTypeNative:hint
+dsAttrTypeNative:jpegphoto
+dsAttrTypeNative:passwd
+dsAttrTypeNative:picture
+dsAttrTypeNative:unlockOptions
+
+MUST use the following key names to use the 'change' action, cannot do so with the "dsAttrTypeNative" names for some reason:
+
+AuthenticationHint
+JPEGPhoto
+Password
+Picture
+
+(Note: Values of these keys can be written to, appended, changed, deleted, etc. through `dscl` without additional prompting for the user, thus these may be interesting for post-exploitation)
+(Note: When using 'change' to change the password hint for a user, I needed to use "AuthenticationHint" instead of "hint")
+(I do not believe the above indicates these keys are aliased to one another, as you can change the value of "Password" to update "passwd" but "Password" itself will still reflect 8 asterisks, unless that's being forced by another layer of the application)

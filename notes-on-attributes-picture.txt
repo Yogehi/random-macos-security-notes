@@ -1,0 +1,12 @@
+Experimenting with picture
+Normally the path to a .tif image file, i.e.  /Library/User Pictures/Animals/Parrot.tif
+
+Looks like modifications to the picture require a reboot (maybe not!)
+
+Try changing it to /etc/passwd: ignored.
+Try a URL to an image: https://en.wikipedia.org/wiki/Russulaceae#/media/File:Russula_emetica_117475.jpg - ignored
+
+
+Oddly, when trying to fix this Picture value by editing my profile picture through the Accounts interface, it just deleted the key...
+
+Not really sure what this value does yet. It doesn't seem to actually affect the profile picture used. Can probably also be used to store arbitrary data.
