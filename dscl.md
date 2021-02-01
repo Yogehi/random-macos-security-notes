@@ -4,7 +4,8 @@ q + "enter" = quit
 ctrl + c = quit
 ctrl + d = quit
 
-```Yays-Mac:~ yayusernameyay$ dscl
+```
+Yays-Mac:~ yayusernameyay$ dscl
 Entering interactive mode... (type "help" for commands)
  > q
 Goodbye
