@@ -41,24 +41,29 @@ Note that any invalid login attempts via SSH does account against the user's loc
 As an admin user, go to System Preferences -> Sharing and enable Remote Login
 
 The process "/sbin/launchd" will start listening on port 22:
-`
+```
 lsof -nP +c 15 | grep LISTEN
 <snip>
 launchd           1            root   42u     IPv6 0xdcfa3871136ea603        0t0        TCP *:22 (LISTEN)
 launchd           1            root   45u     IPv4 0xdcfa387116e83bab        0t0        TCP *:22 (LISTEN)
 launchd           1            root   46u     IPv6 0xdcfa3871136ea603        0t0        TCP *:22 (LISTEN)
-launchd           1            root   47u     IPv4 0xdcfa387116e83bab        0t0        TCP *:22 (LISTEN)`
+launchd           1            root   47u     IPv4 0xdcfa387116e83bab        0t0        TCP *:22 (LISTEN)
+```
 
 Running `launchctl list | grep ssh` will show that `com.openssh.sshd` has been loaded:
-`bash-3.2# launchctl list | grep ssh
--	0	com.openssh.sshd`
+```
+bash-3.2# launchctl list | grep ssh
+-	0	com.openssh.sshd
+```
 
 You can confirm this by (with sudo privs) unloading/loading the appropriate launch plist:
-`bash-3.2# launchctl unload /System/Library/LaunchDaemons/ssh.plist
-bash-3.2# launchctl load /System/Library/LaunchDaemons/ssh.plist`
+```
+bash-3.2# launchctl unload /System/Library/LaunchDaemons/ssh.plist
+bash-3.2# launchctl load /System/Library/LaunchDaemons/ssh.plist
+```
 
 Contents of `/System/Library/LaunchDaemons/ssh.plist`:
-`
+```
 bash-3.2# cat /System/Library/LaunchDaemons/ssh.plist 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -102,4 +107,5 @@ bash-3.2# cat /System/Library/LaunchDaemons/ssh.plist
 	<key>POSIXSpawnType</key>
 	<string>Interactive</string>
 </dict>
-</plist>`
+</plist>
+```
