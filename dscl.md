@@ -1,14 +1,16 @@
 interactive shell info
 
+```
 q + "enter" = quit
 ctrl + c = quit
 ctrl + d = quit
-`Yays-Mac:~ yayusernameyay$ dscl
+```
+```Yays-Mac:~ yayusernameyay$ dscl
 Entering interactive mode... (type "help" for commands)
  > q
 Goodbye
 Yays-Mac:~ yayusernameyay$ ps ax | grep dscl
-  947 s000  S+     0:00.01 grep dscl`
+  947 s000  S+     0:00.01 grep dscl```
 
 ls = list
 `Yays-Mac:~ yayusernameyay$ dscl
